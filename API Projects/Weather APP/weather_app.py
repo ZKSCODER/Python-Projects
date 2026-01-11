@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_weather(city: str):
-            base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+            base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units={unit_type}"
             response = requests.get(base_url)
             
             return response.json()
@@ -22,9 +22,14 @@ while True:
              print("Please enter a valid city name")
              continue
         
-        location_data = get_weather(city)
-        print(f"City = {city1}")
-        print(f"Temperature = {location_data["main"]["temp"]}°C")
+        else:
+            unit_type = input("Enter a unit type (metric, imperial): ")
+            location_data = get_weather(city)
+            print(f"City = {city1}")
+            if unit_type == "imperial":
+                print(f"Temperature = {location_data["main"]["temp"]}°F")
+            else:
+                print(f"Temperature = {location_data["main"]["temp"]}°C")
 
     except KeyError:
         print("City not found. Please try again")
