@@ -1,10 +1,10 @@
-def add(a,b):
+def add(a: float, b: float):
     return a + b
-def subtract(a,b):
+def subtract(a: float, b: float):
     return a - b
-def multiply(a,b):
+def multiply(a: float, b: float):
     return a*b
-def division(a,b):
+def division(a: float, b: float):
     try:
         return a/b
     except ZeroDivisionError:
